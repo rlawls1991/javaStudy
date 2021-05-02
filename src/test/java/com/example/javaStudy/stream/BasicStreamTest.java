@@ -30,5 +30,7 @@ class BasicStreamTest {
         basicStream.example3();
         System.out.println("4==============================");
         basicStream.example4();
+        System.out.println("5==============================");
+        basicStream.example5();
     }
 }
