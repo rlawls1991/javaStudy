@@ -17,4 +17,13 @@ public class gitBranchA {
         System.out.println("Test Branch B");
         System.out.println("Test Branch B");
     }
+    
+    public void testB(){
+        System.out.println("Test Branch B");
+        System.out.println("Test Branch B");
+        System.out.println("Test Branch B");
+        System.out.println("Test Branch B");
+        System.out.println("Test Branch B");
+        System.out.println("Test Branch B");
+    }'
 }
