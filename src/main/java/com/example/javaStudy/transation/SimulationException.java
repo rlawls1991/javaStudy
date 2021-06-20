@@ -2,7 +2,7 @@ package com.example.javaStudy.transation;
 
 import org.springframework.transaction.annotation.Transactional;
 
-public class SimulationTest {
+public class SimulationException {
 
     public void inDirectException() throws Exception {
         throw new Exception("간접 처리 방식 !");
