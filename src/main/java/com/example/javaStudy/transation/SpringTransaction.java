@@ -16,6 +16,7 @@ public class SpringTransaction {
 
     /**
      * 직접 처리 방식내에서 오류가 발생 할 때 Transaction 처리 여부 확인
+     *
      * @throws Exception
      */
     @Transactional
@@ -50,6 +51,7 @@ public class SpringTransaction {
 
     /**
      * 간접 처리 방식내에서 오류가 발생 할 때 Transaction 처리 여부 확인
+     *
      * @throws Exception
      */
     @Transactional
@@ -79,8 +81,8 @@ public class SpringTransaction {
 
 
     /**
-     * @Transactional(rollbackFor = Exception.class) 옵션 먹힘
      * @throws Exception
+     * @Transactional(rollbackFor = Exception.class) 옵션 먹힘
      */
     @Transactional(rollbackFor = Exception.class)
     public void simulation3() throws Exception {
@@ -113,8 +115,8 @@ public class SpringTransaction {
 
 
     /**
-     * @Transactional(rollbackFor = Exception.class) 옵션 안먹힘
      * @throws Exception
+     * @Transactional(rollbackFor = Exception.class) 옵션 안먹힘
      */
     @Transactional(rollbackFor = Exception.class)
     public void simulation4() throws Exception {
@@ -143,6 +145,47 @@ public class SpringTransaction {
          */
         System.out.println("member1 id : " + member1.getMemberId());
         System.out.println("member2 id : " + member2.getMemberId());
+    }
+
+    /**
+     * @throws Exception
+     * @Transactional(rollbackFor = Exception.class) 옵션 안먹힘
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void simulation5() throws Exception {
+        step1Transaction();
+        System.out.println("simulation5");
+    }
+
+
+    @Transactional(rollbackFor = Exception.class)
+    public void step1Transaction() throws Exception {
+        Member member = Member.builder()
+                .name("Member1")
+                .nickname("step1")
+                .email("test1@test.com")
+                .memberMakeSample();
+
+
+        memberRepository.save(member);
+        step2Transaction(member);
+        System.out.println("step1Transaction");
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void step2Transaction(Member member) throws Exception {
+        member.setNickname("step2");
+        memberRepository.save(member);
+        step3Transaction(member);
+        System.out.println("step2Transaction");
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void step3Transaction(Member member) throws Exception {
+        member.setNickname("step3");
+        memberRepository.save(member);
+        System.out.println("step3Transaction");
+        throw new Exception();
     }
 
 }

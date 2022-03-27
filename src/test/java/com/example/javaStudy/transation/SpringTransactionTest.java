@@ -9,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class SpringTransactionTest {
 
@@ -27,7 +25,7 @@ class SpringTransactionTest {
         springTransaction.simulation1();
 
         List<Member> list = memberRepository.findAll();
-        for(Member member : list){
+        for (Member member : list) {
             System.out.println(member.toString());
         }
     }
@@ -39,7 +37,7 @@ class SpringTransactionTest {
 
         System.out.println("테스트 조회 시작");
         List<Member> list = memberRepository.findAll();
-        for(Member member : list){
+        for (Member member : list) {
             System.out.println(member.toString());
         }
     }
@@ -50,7 +48,7 @@ class SpringTransactionTest {
         springTransaction.simulation3();
 
         List<Member> list = memberRepository.findAll();
-        for(Member member : list){
+        for (Member member : list) {
             System.out.println(member.toString());
         }
     }
@@ -62,7 +60,18 @@ class SpringTransactionTest {
         springTransaction.simulation4();
 
         List<Member> list = memberRepository.findAll();
-        for(Member member : list){
+        for (Member member : list) {
+            System.out.println(member.toString());
+        }
+    }
+
+    @Test
+    @DisplayName("Transactional이 걸려있는 메소드 step이 여러개일때 어디서 rollback 처리되는지")
+    void simulation5() throws Exception {
+        springTransaction.simulation5();
+
+        List<Member> list = memberRepository.findAll();
+        for (Member member : list) {
             System.out.println(member.toString());
         }
     }
